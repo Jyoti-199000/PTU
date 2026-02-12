@@ -178,36 +178,28 @@
   </div>
 
   <!-- ---------- SCRIPT ---------- -->
+
 <script>
 const music = document.getElementById("bgMusic");
-music.volume = 0.4;
+music.volume = 0.4; // soft sound
 
-/* ✅ mobile-safe play */
-function startMusicOnce() {
-  music.play().then(() => {
-    console.log("playing");
-  }).catch(() => {
-    console.log("blocked");
-  });
-
-  document.removeEventListener("click", startMusicOnce);
-  document.removeEventListener("touchstart", startMusicOnce);
-}
-
-/* both events for all mobiles */
-document.addEventListener("touchstart", startMusicOnce, { passive: true });
-document.addEventListener("click", startMusicOnce);
-
-
-/* gift only shows text */
+/* 🎁 Gift click = show message + play music (100% mobile safe) */
 function openGift() {
+
+  // show surprise text
   document.getElementById("surprise").style.display = "block";
+
+  // play music (direct user click → always allowed)
+  music.play().then(() => {
+    console.log("Music started");
+  }).catch(err => {
+    console.log("Playback blocked:", err);
+  });
 }
 </script>
 
 
 
+
 </body>
 </html>
-
-
