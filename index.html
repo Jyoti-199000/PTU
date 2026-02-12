@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>💖 Happy Birthday 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: radial-gradient(circle at top, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ---------- CARD ---------- */
+    .container {
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      padding: 30px 22px;
+      border-radius: 25px;
+      text-align: center;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+      animation: popIn 1s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.7); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    /* ---------- TEXT ---------- */
+    .title {
+      font-size: 30px;
+      color: #ff4d6d;
+      margin-bottom: 5px;
+    }
+
+    .name {
+      font-size: 22px;
+      color: #d63384;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .message {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    /* ---------- PHOTO ---------- */
+    .photo img {
+      width: 60%;
+      border-radius: 18px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 15px rgba(255,77,109,0.4); }
+      to   { box-shadow: 0 0 35px rgba(255,77,109,0.8); }
+    }
+
+    /* ---------- GIFT BUTTON ---------- */
+    .gift-btn {
+      background: linear-gradient(45deg, #ff4d6d, #ff85a2);
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .gift-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* ---------- SURPRISE ---------- */
+    .surprise {
+      display: none;
+      margin-top: 18px;
+      font-size: 15px;
+      color: #ff4d6d;
+      font-weight: 600;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- FLOATING HEARTS ---------- */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 20px;
+      animation: floatUp linear infinite;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 🎵 Background Music -->
+  <!-- Put music.mp3 in same folder -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating hearts -->
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💓";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+  <!-- ---------- CARD ---------- -->
+  <div class="container">
+
+    <div class="title">🎂 Happy Birthday</div>
+    <div class="name">[PAYAL 😊]</div>
+
+    <div class="message">
+      It has been 3 years 4 months since we met.<br>
+      Life changed, we changed, everything changed.<br><br>
+      But today, I only wish you happiness.<br>
+      No expectations… just pure love and respect.<br><br>
+      May your life be full of smiles and dreams. 💖
+    </div>
+
+    <div class="photo">
+      <!-- Replace with your image -->
+      <img src="propose.jpg.jpeg" alt="Memory">
+    </div>
+
+    <button class="gift-btn" onclick="openGift()">🎁 Open Your Surprise</button>
+
+    <div id="surprise" class="surprise">
+      You will always have a special place in my heart.<br>
+      Stay happy… always 🌸<br>
+     [i am always here for you] 💕
+    </div>
+
+  </div>
+
+  <!-- ---------- SCRIPT ---------- -->
+ <script>
+const music = document.getElementById("bgMusic");
+music.volume = 0.4;
+
+/* 🎵 Play music on FIRST touch/click anywhere */
+function startMusicOnce() {
+  music.play();
+  document.removeEventListener("click", startMusicOnce);
+  document.removeEventListener("touchstart", startMusicOnce);
+}
+
+document.addEventListener("click", startMusicOnce);
+document.addEventListener("touchstart", startMusicOnce);
+
+
+/* 🎁 Gift only shows message (NO music here) */
+function openGift() {
+  document.getElementById("surprise").style.display = "block";
+}
+</script>
+
+
+</body>
+</html>
